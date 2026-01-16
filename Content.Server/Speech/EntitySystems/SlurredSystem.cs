@@ -81,6 +81,10 @@ public sealed class SlurredSystem : SharedSlurredSystem
                     'a' => "ah",
                     'u' => "oo",
                     'c' => "k",
+                    'о' => "а",
+                    'к' => "кх",
+                    'щ' => "шч",
+                    'ц' => "тс",
                     _ => $"{character}",
                 };
 
