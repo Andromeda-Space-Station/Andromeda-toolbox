@@ -12,7 +12,9 @@ Space Station - это адский симулятор космического 
 
 ## Ссылки
 
-[Наш Discord](https://discord.gg/NxTZeUPtRf) | [Стим](https://store.steampowered.com/app/3731580/Space_Station_Beyond/) | [Ультра Соевые Шизомаги](https://github.com/space-wizards/space-station-14) | [Движок Шизомагов](https://github.com/space-wizards/RobustToolbox.git)
+[Дискорд Андромеды-13](https://discord.gg/NxTZeUPtRf) | Хаб на котором находится наш сервер. [Стим](https://store.steampowered.com/app/3731580/Space_Station_Beyond/)
+
+За основу взято: [Ультра Соевые Шизомаги](https://github.com/space-wizards/space-station-14) | [Движок Шизомагов](https://github.com/space-wizards/RobustToolbox.git)
 
 ## Документация
 
@@ -30,6 +32,7 @@ Space Station - это адский симулятор космического 
 
 ## Сборка
 Всё можно выполнить скриптами, они находятся в Andromeda-toolbox/Scripts/
+Вам потребуется скачать [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 
 1. Склонируйте или скачайте архив этого репозитория
 2. Установите или обновите движок с помощью download-engine.bat
