@@ -265,12 +265,6 @@ paket-files/
 __pycache__/
 *.pyc
 
-# Visual Studio Code workspace settings.
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/tasks.json
-
 # Release package files go here:
 release/
 
