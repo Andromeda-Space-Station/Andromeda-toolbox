@@ -5,113 +5,112 @@ namespace Content.Shared.CCVar;
 public sealed partial class CCVars
 {
     /// <summary>
-    ///     The role that will get mentioned if a new SOS ahelp comes in.
+    ///     Роль, которая будет упомянута, если поступает новый аларм помощи (SOS ahelp).
     /// </summary>
     public static readonly CVarDef<string> DiscordAhelpMention =
         CVarDef.Create("discord.on_call_ping", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     URL of the discord webhook to relay unanswered ahelp messages.
+    ///     URL вебхука Discord для ретрансляции неотвеченных сообщений помощи (ahelp).
     /// </summary>
     public static readonly CVarDef<string> DiscordOnCallWebhook =
         CVarDef.Create("discord.on_call_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     URL of the Discord webhook which will relay all ahelp messages.
+    ///     URL вебхука Discord, который будет ретранслировать все сообщения помощи (ahelp).
     /// </summary>
     public static readonly CVarDef<string> DiscordAHelpWebhook =
         CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     The server icon to use in the Discord ahelp embed footer.
-    ///     Valid values are specified at https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure.
+    ///     Иконка сервера для использования в подвале (footer) встраиваемого сообщения (embed) Discord помощи (ahelp).
+    ///     Допустимые значения указаны на https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure.
     /// </summary>
     public static readonly CVarDef<string> DiscordAHelpFooterIcon =
         CVarDef.Create("discord.ahelp_footer_icon", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     The avatar to use for the webhook. Should be an URL.
+    ///     Аватар для использования вебхуком. Должен быть URL.
     /// </summary>
     public static readonly CVarDef<string> DiscordAHelpAvatar =
         CVarDef.Create("discord.ahelp_avatar", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     URL of the Discord webhook which will relay all custom votes. If left empty, disables the webhook.
+    ///     URL вебхука Discord, который будет ретранслировать все пользовательские голосования. Если оставить пустым, отключает вебхук.
     /// </summary>
     public static readonly CVarDef<string> DiscordVoteWebhook =
         CVarDef.Create("discord.vote_webhook", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     URL of the Discord webhook which will relay all votekick votes. If left empty, disables the webhook.
+    ///     URL вебхука Discord, который будет ретранслировать все голосования за кик (votekick). Если оставить пустым, отключает вебхук.
     /// </summary>
     public static readonly CVarDef<string> DiscordVotekickWebhook =
         CVarDef.Create("discord.votekick_webhook", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     URL of the Discord webhook which will relay round restart messages.
+    ///     URL вебхука Discord, который будет ретранслировать сообщения о перезапуске раунда.
     /// </summary>
     public static readonly CVarDef<string> DiscordRoundUpdateWebhook =
         CVarDef.Create("discord.round_update_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     Role id for the Discord webhook to ping when the round ends.
+    ///     ID роли Discord для упоминания вебхуком при окончании раунда.
     /// </summary>
     public static readonly CVarDef<string> DiscordRoundEndRoleWebhook =
         CVarDef.Create("discord.round_end_role", string.Empty, CVar.SERVERONLY);
 
 
     /// <summary>
-    ///     The token used to authenticate with Discord. For the Bot to function set: discord.token, discord.guild_id, and discord.prefix.
-    ///     If this is empty, the bot will not connect.
+    ///     Токен, используемый для аутентификации в Discord. Для работы бота установите: discord.token, discord.guild_id и discord.prefix.
+    ///     Если это пусто, бот не подключится.
     /// </summary>
     public static readonly CVarDef<string> DiscordToken =
         CVarDef.Create("discord.token", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     The Discord guild ID to use for commands as well as for several other features.
-    ///     If this is empty, the bot will not connect.
+    ///     ID гильдии Discord для использования команд, а также для нескольких других функций.
+    ///     Если это пусто, бот не подключится.
     /// </summary>
     public static readonly CVarDef<string> DiscordGuildId =
         CVarDef.Create("discord.guild_id", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     Prefix used for commands for the Discord bot.
-    ///     If this is empty, the bot will not connect.
+    ///     Префикс, используемый для команд Discord бота.
+    ///     Если это пусто, бот не подключится.
     /// </summary>
     public static readonly CVarDef<string> DiscordPrefix =
         CVarDef.Create("discord.prefix", "!", CVar.SERVERONLY);
 
     /// <summary>
-    ///     URL of the Discord webhook which will relay watchlist connection notifications. If left empty, disables the webhook.
+    ///     URL вебхука Discord, который будет ретранслировать уведомления о подключениях из списка наблюдения (watchlist). Если оставить пустым, отключает вебхук.
     /// </summary>
     public static readonly CVarDef<string> DiscordWatchlistConnectionWebhook =
         CVarDef.Create("discord.watchlist_connection_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
-    ///     How long to buffer watchlist connections for, in seconds.
-    ///     All connections within this amount of time from the first one will be batched and sent as a single
-    ///     Discord notification. If zero, always sends a separate notification for each connection (not recommended).
+    ///     Как долго буферизировать подключения из списка наблюдения, в секундах.
+    ///     Все подключения в течение этого времени с момента первого будут объединены в пакет и отправлены как одно
+    ///     уведомление Discord. Если ноль, всегда отправляет отдельное уведомление для каждого подключения (не рекомендуется).
     /// </summary>
     public static readonly CVarDef<float> DiscordWatchlistConnectionBufferTime =
         CVarDef.Create("discord.watchlist_connection_buffer_time", 5f, CVar.SERVERONLY);
 
     /// <summary>
-    ///     URL of the Discord webhook which will receive station news acticles at the round end.
-    ///     If left empty, disables the webhook.
+    ///     URL вебхука Discord, который будет получать статьи станционных новостей в конце раунда.
+    ///     Если оставить пустым, отключает вебхук.
     /// </summary>
     public static readonly CVarDef<string> DiscordNewsWebhook =
         CVarDef.Create("discord.news_webhook", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
-    ///     HEX color of station news discord webhook's embed.
+    ///     HEX цвет встраиваемого сообщения (embed) вебхука Discord станционных новостей.
     /// </summary>
     public static readonly CVarDef<string> DiscordNewsWebhookEmbedColor =
         CVarDef.Create("discord.news_webhook_embed_color", Color.LawnGreen.ToHex(), CVar.SERVERONLY);
 
     /// <summary>
-    ///     Whether or not articles should be sent mid-round instead of all at once at the round's end
+    ///     Следует ли отправлять статьи в середине раунда вместо того, чтобы отправлять все сразу в конце раунда.
     /// </summary>
     public static readonly CVarDef<bool> DiscordNewsWebhookSendDuringRound =
         CVarDef.Create("discord.news_webhook_send_during_round", false, CVar.SERVERONLY);
-
 }
