@@ -14,6 +14,23 @@
 
 - type: entity
   parent: ClothingNeckPinBase
+  id: ClothingAllPinBase
+  abstract: true
+  components:
+  - type: ChameleonClothing
+    slot: Neck
+    affectedByEmp: false
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingAllPinBase
   id: ClothingNeckAndromeda
   name: andromeda pin
   description: The best of the best!.
@@ -22,6 +39,8 @@
     state: andromeda
   - type: Clothing
     equippedPrefix: andromeda
+  - type: ChameleonClothing
+    default: ClothingNeckAndromeda
 
 - type: entity
   parent: BaseItem
