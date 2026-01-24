@@ -1,71 +1,155 @@
 - type: lobbyBackground
   id: Warden
   background: /Textures/LobbyScreens/warden.webp
-  title: lobby-state-background-warden-title
-  artist: lobby-state-background-warden-artist
-
-- type: lobbyBackground
-  id: Pharmacy
-  background: /Textures/LobbyScreens/pharmacy.webp
-  title: lobby-state-background-pharmacy-title
-  artist: lobby-state-background-pharmacy-artist
-
-- type: lobbyBackground
-  id: SSXIV
-  background: /Textures/LobbyScreens/ssxiv.webp
-  title: lobby-state-background-SSXIV-title
-  artist: lobby-state-background-SSXIV-artist
-
-- type: lobbyBackground
-  id: Susstation
-  background: /Textures/LobbyScreens/susstation.webp
-  title: lobby-state-background-susstation-title
-  artist: lobby-state-background-susstation-artist
 
 - type: lobbyBackground
   id: SkellyVsTheRev
   background: /Textures/LobbyScreens/skellyvstherev.webp
-  title: lobby-state-background-skellyvstherev-title
-  artist: lobby-state-background-skellyvstherev-artist
-
-- type: lobbyBackground
-  id: Doomed
-  background: /Textures/LobbyScreens/doomed.webp
-  title: lobby-state-background-doomed-title
-  artist: lobby-state-background-doomed-artist
-
-- type: lobbyBackground
-  id: Blueprint
-  background: /Textures/LobbyScreens/blueprint.webp
-  title: lobby-state-background-blueprint-title
-  artist: lobby-state-background-blueprint-artist
-
-- type: lobbyBackground
-  id: Behonker
-  background: /Textures/LobbyScreens/behonker.webp
-  title: lobby-state-background-behonker-title
-  artist: lobby-state-background-behonker-artist
-
-- type: lobbyBackground
-  id: TerminalStation
-  background: /Textures/LobbyScreens/terminalstation.webp
-  title: lobby-state-background-terminalstation-title
-  artist: lobby-state-background-terminalstation-artist
-
-- type: lobbyBackground
-  id: JustAWeekAway
-  background: /Textures/LobbyScreens/justaweekaway.webp
-  title: lobby-state-background-justaweekaway-title
-  artist: lobby-state-background-justaweekaway-artist
-
-- type: lobbyBackground
-  id: JaniShootout
-  background: /Textures/LobbyScreens/janishootout.webp
-  title: lobby-state-background-janishootout-title
-  artist: lobby-state-background-janishootout-artist
 
 - type: lobbyBackground
   id: ReclaimerNuke
   background: /Textures/LobbyScreens/reclaimer-nuke.webp
-  title: lobby-state-background-reclaimernuke-title
-  artist: lobby-state-background-reclaimernuke-artist
+
+- type: lobbyBackground
+  id: Armaturov
+  background: /Textures/LobbyScreens/Armaturov.png
+
+- type: lobbyBackground
+  id: BrigoBratva
+  background: /Textures/LobbyScreens/BrigoBratva.png
+
+- type: lobbyBackground
+  id: CentCOCK
+  background: /Textures/LobbyScreens/CentCOCK.jpg
+
+- type: lobbyBackground
+  id: Dikus
+  background: /Textures/LobbyScreens/Dikus.png
+
+- type: lobbyBackground
+  id: DingDong
+  background: /Textures/LobbyScreens/DingDong.png
+
+- type: lobbyBackground
+  id: DOOM
+  background: /Textures/LobbyScreens/DOOM.png
+
+- type: lobbyBackground
+  id: Eblia
+  background: /Textures/LobbyScreens/Eblia.png
+
+- type: lobbyBackground
+  id: FarmilaTexov
+  background: /Textures/LobbyScreens/FarmilaTexov.png
+
+- type: lobbyBackground
+  id: GoGoGO
+  background: /Textures/LobbyScreens/GoGoGO.png
+
+- type: lobbyBackground
+  id: HonkSquad
+  background: /Textures/LobbyScreens/HonkSquad.png
+
+- type: lobbyBackground
+  id: Jammal
+  background: /Textures/LobbyScreens/Jammal.jpg
+
+- type: lobbyBackground
+  id: Lomka
+  background: /Textures/LobbyScreens/Lomka.png
+
+- type: lobbyBackground
+  id: Mentor
+  background: /Textures/LobbyScreens/Mentor.png
+
+- type: lobbyBackground
+  id: Mim
+  background: /Textures/LobbyScreens/Mim.jpg
+
+- type: lobbyBackground
+  id: MrBest
+  background: /Textures/LobbyScreens/MrBest.jpg
+
+- type: lobbyBackground
+  id: NewKapitan
+  background: /Textures/LobbyScreens/NewKapitan.jpg
+
+- type: lobbyBackground
+  id: No4noiBar
+  background: /Textures/LobbyScreens/No4noiBar.png
+
+- type: lobbyBackground
+  id: Oguzki
+  background: /Textures/LobbyScreens/Oguzki.jpg
+
+- type: lobbyBackground
+  id: PiatnicaRewokina
+  background: /Textures/LobbyScreens/PiatnicaRewokina.png
+
+- type: lobbyBackground
+  id: PolyAndIA
+  background: /Textures/LobbyScreens/PolyAndIA.png
+
+- type: lobbyBackground
+  id: PoorClowny
+  background: /Textures/LobbyScreens/PoorClowny.png
+
+- type: lobbyBackground
+  id: Ptichka
+  background: /Textures/LobbyScreens/Ptichka.png
+
+- type: lobbyBackground
+  id: Putin
+  background: /Textures/LobbyScreens/Putin.png
+
+- type: lobbyBackground
+  id: RikardoAsistuxins
+  background: /Textures/LobbyScreens/RikardoAsistuxins.png
+
+- type: lobbyBackground
+  id: SayHonk
+  background: /Textures/LobbyScreens/SayHonk.png
+
+- type: lobbyBackground
+  id: Sdoxla
+  background: /Textures/LobbyScreens/Sdoxla.jpg
+
+- type: lobbyBackground
+  id: Shitkurshiki
+  background: /Textures/LobbyScreens/Shitkurshiki.jpg
+
+- type: lobbyBackground
+  id: SMO
+  background: /Textures/LobbyScreens/SMO.png
+
+- type: lobbyBackground
+  id: soSI
+  background: /Textures/LobbyScreens/soSI.jpg
+
+- type: lobbyBackground
+  id: Srochniki
+  background: /Textures/LobbyScreens/Srochniki.png
+
+- type: lobbyBackground
+  id: TheBoys
+  background: /Textures/LobbyScreens/TheBoys.png
+
+- type: lobbyBackground
+  id: TixoBolnoNeBudit
+  background: /Textures/LobbyScreens/TixoBolnoNeBudit.png
+
+- type: lobbyBackground
+  id: Ustal
+  background: /Textures/LobbyScreens/Ustal.png
+
+- type: lobbyBackground
+  id: Vulpus
+  background: /Textures/LobbyScreens/Vulpus.jpg
+
+- type: lobbyBackground
+  id: Shkodnik
+  background: /Textures/LobbyScreens/Shkodnik.jpg
+
+- type: lobbyBackground
+  id: ShizdenAreestus
+  background: /Textures/LobbyScreens/ShizdenAreestus.png

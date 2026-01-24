@@ -66230,20 +66230,6 @@ entities:
     - type: Transform
       pos: -75.67967,-3.2953148
       parent: 2
-- proto: ClothingNeckGoldAutismPin
-  entities:
-  - uid: 2395
-    components:
-    - type: Transform
-      pos: -21.527897,-69.71385
-      parent: 2
-  - uid: 9590
-    components:
-    - type: Transform
-      parent: 21062
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingNeckGoldmedal
   entities:
   - uid: 4302
