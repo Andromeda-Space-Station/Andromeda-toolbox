@@ -1,9 +1,14 @@
 - type: soundCollection
   id: RoundEnd
   files:
-  - /Audio/Announcements/RoundEnd/apc_destroyed.ogg
-  - /Audio/Announcements/RoundEnd/disappointed.ogg
-  - /Audio/Announcements/RoundEnd/notevenpaidforthis.ogg
+  - /Audio/Announcements/RoundEnd/bell.ogg
+  - /Audio/Announcements/RoundEnd/bully.ogg
+  - /Audio/Announcements/RoundEnd/its_only_game.ogg
+  - /Audio/Announcements/RoundEnd/leave_me_alone.ogg
+  - /Audio/Announcements/RoundEnd/magical_lnternet.ogg
+  - /Audio/Announcements/RoundEnd/mama_v_komnate.ogg
+  - /Audio/Announcements/RoundEnd/ploho_sosal.ogg
+  - /Audio/Announcements/RoundEnd/zdes_stolko_porno.ogg
 
 - type: soundCollection
   id: PowerOn

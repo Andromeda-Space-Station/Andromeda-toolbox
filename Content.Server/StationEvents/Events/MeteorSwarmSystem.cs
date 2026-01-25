@@ -26,23 +26,62 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         base.Added(uid, component, gameRule, args);
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
+        
+        // Инициализируем время первой волны
+        component.NextWaveTime = Timing.CurTime + TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
         // we don't want to send to players who aren't in game (i.e. in the lobby)
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
+        // Текстовый анонс начала
         if (component.Announcement is { } locId)
             _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
 
+        // Звук начала
         _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
     {
+        // Тройная защита от повторного вызова анонса завершения обстрела велекорусской спермой.
+        // 
+        // 1. Проверяем что правило активно
+        if (!GameTicker.IsGameRuleActive(uid, gameRule))
+            return;
+        
+        // 2. Проверяем что сущность не удалена
+        if (MetaData(uid).EntityDeleted)
+            return;
+            
+        // 3. Проверяем что мы еще не начали завершение
+        if (component.Ending)
+        {
+            // Если уже начали завершение, ждем таймер
+            if (Timing.CurTime >= component.EndSoundTime)
+            {
+                // ГООООЛ, запускаем анонс
+                Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
+                
+                // Текстовый анонс завершения
+                if (component.EndAnnouncement is { } endLocId)
+                    _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(endLocId), playSound: false, colorOverride: Color.Gold);
+                
+                // Звук завершения
+                if (component.EndSound != null)
+                {
+                    _audio.PlayGlobal(component.EndSound, allPlayersInGame, true);
+                }
+                
+                ForceEndSelf(uid, gameRule);
+            }
+            return;
+        }
+
+        // Ждем следующую волну
         if (Timing.CurTime < component.NextWaveTime)
             return;
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
-
 
         if (_station.GetStations().Count == 0)
             return;
@@ -84,9 +123,14 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         }
 
         component.WaveCounter--;
+        
+        // ВАЖНО: Проверяем кончились ли волны
         if (component.WaveCounter <= 0)
         {
-            ForceEndSelf(uid, gameRule);
+            // Процесс завершения
+            component.Ending = true;
+            // Устанавливаем таймер на 1 минуту (EndDelay = 60) или другое значение, если поменяют
+            component.EndSoundTime = Timing.CurTime + TimeSpan.FromSeconds(component.EndDelay);
         }
     }
 }
