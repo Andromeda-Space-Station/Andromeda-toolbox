@@ -11,6 +11,9 @@ public sealed partial class MeteorSwarmComponent : Component
     [DataField, AutoPausedField]
     public TimeSpan NextWaveTime;
 
+    [DataField, AutoPausedField]
+    public TimeSpan EndSoundTime;
+
     /// <summary>
     /// We'll send a specific amount of waves of meteors towards the station per ending rather than using a timer.
     /// </summary>
@@ -27,13 +30,43 @@ public sealed partial class MeteorSwarmComponent : Component
     public bool NonDirectional;
 
     /// <summary>
+    /// Флажок для предотвращения многократных завершающих вызовов.
+    /// </summary>
+    [DataField]
+    public bool Ending = false;
+
+    /// <summary>
+    /// Задержка в секундах после последней волны перед воспроизведением конечного звука.
+    /// </summary>
+    [DataField]
+    public float EndDelay = 60f; // 1 минута
+
+    /// <summary>
     /// The announcement played when a meteor swarm begins.
     /// </summary>
     [DataField]
     public LocId? Announcement = "station-event-meteor-swarm-start-announcement";
 
     [DataField]
-    public SoundSpecifier? AnnouncementSound = new SoundPathSpecifier("/Audio/Announcements/meteors.ogg")
+    public SoundSpecifier? AnnouncementSound = new SoundPathSpecifier("/Audio/Announcements/meteors_start.ogg")
+    {
+        Params = new()
+        {
+            Volume = -4
+        }
+    };
+
+    /// <summary>
+    /// Анонс по окончанию.
+    /// </summary>
+    [DataField]
+    public LocId? EndAnnouncement = "station-event-meteor-swarm-end-announcement";
+
+    /// <summary>
+    /// Звук по окончанию метеоритного балдежа.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? EndSound = new SoundPathSpecifier("/Audio/Announcements/meteors_end.ogg")
     {
         Params = new()
         {

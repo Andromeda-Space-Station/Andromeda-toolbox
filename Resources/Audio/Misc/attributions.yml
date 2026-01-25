@@ -40,8 +40,8 @@
 
 - files: ["gamma.ogg"]
   license: "CC0-1.0"
-  copyright: "Created by Bhijin & Myr for Space Station 14"
-  source: "https://github.com/space-wizards/space-station-14"
+  copyright: "Интернет"
+  source: "Интернет"
 
 - files: ["redalert.ogg"]
   license: "CC-BY-SA-3.0"
@@ -60,8 +60,8 @@
 
 - files: ["stickystretch.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from sdroliasnick via freesound.org, edit by august-sun(GitHub)/augustsun(Discord)"
-  source: "https://freesound.org/people/sdroliasnick/sounds/731262/"
+  copyright: "Интернет"
+  source: "Интернет"
 
 - files: ["boing.ogg"]
   license: "CC-BY-SA-3.0"
@@ -85,5 +85,5 @@
 
 - files: ["delta.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from Citadel station"
-  source: "https://github.com/Citadel-Station-13/Citadel-Station-13/blob/e31455667ebf3331255c1143e1e7215bc737a287/sound/misc/deltakalaxon.ogg"
+  copyright: "Интернет"
+  source: "Интернет"
