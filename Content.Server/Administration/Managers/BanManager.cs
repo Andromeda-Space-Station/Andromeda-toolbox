@@ -39,7 +39,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly IEntitySystemManager _systems = default!;
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
-
+    private BanWebhookManager? _banWebhookManager;
+    private BanWebhookManager GetBanWebhookManager()
+    {
+        if (_banWebhookManager == null)
+        {
+            // Используем DependencyCollection, а не IoCManager
+            _banWebhookManager = IoCManager.Resolve<BanWebhookManager>();
+        }
+        return _banWebhookManager;
+    }
+    
     private ISawmill _sawmill = default!;
 
     public const string SawmillId = "admin.bans";
@@ -53,7 +63,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgRoleBans>();
-
+        
         _db.SubscribeToJsonNotification<BanNotificationData>(
             _taskManager,
             _sawmill,
@@ -168,6 +178,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
+
+        _taskManager.BlockWaitOnTask(GetBanWebhookManager().SendBanWebhook(
+            target,
+            targetUsername,
+            banningAdmin,
+            adminName,
+            minutes,
+            reason,
+            severity.ToString()
+        ));
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
@@ -286,6 +306,21 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
 
+        var adminName = banningAdmin == null
+            ? Loc.GetString("system-user")
+            : (await _db.GetPlayerRecordByUserId(banningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
+
+        _taskManager.BlockWaitOnTask(GetBanWebhookManager().SendBanWebhook(
+            target,
+            targetUsername,
+            banningAdmin,
+            adminName,
+            minutes,
+            reason,
+            severity.ToString(),
+            role.ToString()
+        ));
+
         if (target is not null && _playerManager.TryGetSessionById(target.Value, out var session))
             SendRoleBans(session);
     }
@@ -335,6 +370,28 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             roleBans.RemoveAll(roleBan => roleBan.Id == ban.Id);
             SendRoleBans(session);
         }
+
+        var adminName = unbanningAdmin == null
+            ? Loc.GetString("system-user")
+            : (await _db.GetPlayerRecordByUserId(unbanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
+
+        // Нужно получить информацию о бане для получения имени цели
+        var roleName = ban?.Role;
+        if (!string.IsNullOrEmpty(roleName))
+        {
+            // Убираем префиксы для красивого отображения
+            if (roleName.StartsWith(PrefixAntag))
+                roleName = roleName[PrefixAntag.Length..];
+            else if (roleName.StartsWith(PrefixJob))
+                roleName = roleName[PrefixJob.Length..];
+        }
+
+        _taskManager.BlockWaitOnTask(GetBanWebhookManager().SendUnbanWebhook(
+            banId,
+            unbanningAdmin,
+            adminName,
+            role: roleName
+        ));
 
         return $"Pardoned ban with id {banId}";
     }

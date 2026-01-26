@@ -1,4 +1,5 @@
-﻿using Content.Server.Database;
+﻿﻿using Content.Server.Administration.Managers;
+using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -8,6 +9,16 @@ namespace Content.Server.Administration.Commands
     public sealed class PardonCommand : LocalizedCommands
     {
         [Dependency] private readonly IServerDbManager _dbManager = default!;
+        
+        private BanWebhookManager? _banWebhookManager;
+        private BanWebhookManager GetBanWebhookManager()
+        {
+            if (_banWebhookManager == null)
+            {
+                _banWebhookManager = IoCManager.Resolve<BanWebhookManager>();
+            }
+            return _banWebhookManager;
+        }
 
         public override string Command => "pardon";
 
@@ -51,6 +62,15 @@ namespace Content.Server.Administration.Commands
             }
 
             await _dbManager.AddServerUnbanAsync(new ServerUnbanDef(banId, player?.UserId, DateTimeOffset.Now));
+
+            // Отправляем вебхук для разбана
+            var adminName = player?.Name ?? Loc.GetString("system-user");
+            
+            _ = GetBanWebhookManager().SendUnbanWebhook(
+                banId,
+                player?.UserId,
+                adminName
+            );
 
             shell.WriteLine(Loc.GetString($"cmd-pardon-success", ("id", banId)));
         }

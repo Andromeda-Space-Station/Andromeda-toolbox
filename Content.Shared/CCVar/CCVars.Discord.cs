@@ -113,4 +113,28 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> DiscordNewsWebhookSendDuringRound =
         CVarDef.Create("discord.news_webhook_send_during_round", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL вебхука Discord для уведомлений о банах/разбанах/блокировках ролей.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordBanWebhook =
+        CVarDef.Create("discord.ban_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// Цвет embed'а для банов (HEX).
+    /// </summary>
+    public static readonly CVarDef<string> DiscordBanEmbedColor =
+        CVarDef.Create("discord.ban_embed_color", "#FF0000", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Цвет embed'а для блокировок ролей (HEX).
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRoleBanEmbedColor =
+        CVarDef.Create("discord.roleban_embed_color", "#FFA500", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Цвет embed'а для разбанов (HEX).
+    /// </summary>
+    public static readonly CVarDef<string> DiscordUnbanEmbedColor =
+        CVarDef.Create("discord.unban_embed_color", "#04af04", CVar.SERVERONLY);
 }
