@@ -91,6 +91,7 @@ namespace Content.Server.Entry
         public override void Init()
         {
             base.Init();
+            IoCManager.Register<BanWebhookManager, BanWebhookManager>(true);
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
 
