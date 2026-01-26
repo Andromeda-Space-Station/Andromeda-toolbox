@@ -1,0 +1,16 @@
+# .github/workflows/toolbox-discord.yml
+name: Discord Toolbox
+on:
+  fork:
+  pull_request:
+  pull_request_review:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send to Discord
+        run: |
+          curl -X POST "${{ secrets.DISCORD_WEBHOOK }}" \
+            -H "Content-Type: application/json" \
+            -d '{"content": "Toolbox: ${{ github.event_name }}"}'
