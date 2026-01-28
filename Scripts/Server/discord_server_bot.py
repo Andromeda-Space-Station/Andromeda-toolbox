@@ -87,6 +87,21 @@ async def start_cmd(ctx):
     result = start_server()
     await ctx.send(f'```\n{result}\n```')
 
+@bot.command(name='stop')
+@commands.check(is_allowed)
+async def shutdown_bot(ctx):
+    """Остановить Discord бота"""
+    if ctx.channel.id != CHANNEL_ID:
+        return
+    
+    await ctx.send('**Останавливаю бота...**')
+    
+    # Логируем отключение
+    print(f"Бот остановлен по команде от {ctx.author}")
+    
+    # Закрываем соединение с Discord
+    await bot.close()
+
 @bot.command(name='restart')
 @commands.check(is_allowed)
 async def restart_cmd(ctx):
@@ -341,37 +356,36 @@ def compile_release():
         return f"Ошибка компиляции: {e}"
 
 def start_server():
-    """Запустить сервер через runserver.sh"""
+    """Запустить сервер в screen сессии"""
     try:
-        if not RUN_SCRIPT.exists():
-            return f"Ошибка: файл не найден - {RUN_SCRIPT}"
-        
-        RUN_SCRIPT.chmod(0o755)
-        
+        # Проверяем не запущен ли уже
         pgrep = subprocess.run(['pgrep', '-f', 'Content.Server'],
                               capture_output=True, text=True)
         
         if pgrep.returncode == 0:
             return "Сервер уже запущен"
         
-        process = subprocess.Popen(['bash', str(RUN_SCRIPT)],
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.PIPE,
-                                 cwd=RUN_SCRIPT.parent,
-                                 start_new_session=True)
+        # Запускаем в новой screen сессии
+        result = subprocess.run(
+            ['screen', '-dmS', 'ss14-server', 'bash', str(RUN_SCRIPT)],
+            capture_output=True,
+            text=True
+        )
         
-        time.sleep(2)
+        time.sleep(3)
         
+        # Проверяем запустился ли
         pgrep2 = subprocess.run(['pgrep', '-f', 'Content.Server'],
                                capture_output=True, text=True)
         
         if pgrep2.returncode == 0:
-            return f"Сервер запущен (PID: {process.pid})"
+            pids = pgrep2.stdout.strip().split('\n')
+            return f"Сервер запущен в screen 'ss14-server'\nPID: {', '.join(pids)}"
         else:
-            return f"Запуск выполнен, но процесс не найден. PID: {process.pid}"
+            return "Сервер не запустился"
             
     except Exception as e:
-        return f"Ошибка запуска: {e}"
+        return f"Ошибка: {e}"
 
 def check_status():
     """Проверить статус сервера"""
