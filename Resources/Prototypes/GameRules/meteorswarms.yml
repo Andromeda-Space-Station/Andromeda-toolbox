@@ -118,9 +118,9 @@
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: null
-    endAnnouncement: null
-    endSound: null
+    announcementSound: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-space-dust-end-announcement
+    endSound: /Audio/Announcements/attention.ogg
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
@@ -140,9 +140,9 @@
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: null
-    endAnnouncement: null
-    endSound: null
+    announcementSound: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-space-dust-end-announcement
+    endSound: /Audio/Announcements/attention.ogg
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
