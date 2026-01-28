@@ -87,7 +87,7 @@ async def start_cmd(ctx):
     result = start_server()
     await ctx.send(f'```\n{result}\n```')
 
-@bot.command(name='stop')
+@bot.command(name='stop_bot')
 @commands.check(is_allowed)
 async def shutdown_bot(ctx):
     """Остановить Discord бота"""
